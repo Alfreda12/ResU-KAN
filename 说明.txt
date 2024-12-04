@@ -1,0 +1,3 @@
+train：python train.py --arch ResUKAN --dataset glas --input_w 256 --input_h 256 --name glas_ResUKAN  --data_dir ./inputs
+weight：ResU_KAN\outputs\glas_ResUKAN\model.pth
+val：python val.py --name glas_ResUKAN --output_dir outputs
