@@ -58,13 +58,3 @@ class EMA(nn.Module):
         # 使用权重调整 group_x 的特征，并 reshape 为原始的形状 (batch_size, channels, height, width)。
         return (group_x * weights.sigmoid()).reshape(b, c, h, w)
 
-# 测试代码
-if __name__ == '__main__':
-    # 创建一个 EMA 模块实例，通道数为 64，使用 CUDA 加速。
-    block = EMA(64).cuda()
-    # 生成一个大小为 (1, 64, 64, 64) 的随机张量作为输入，并使用 CUDA 加速。
-    input = torch.rand(1, 64, 64, 64).cuda()
-    # 将输入张量传递给 EMA 模块，计算输出。
-    output = block(input)
-    # 打印输入和输出的形状，确保它们匹配。
-    print(input.size(), output.size())
