@@ -84,7 +84,7 @@ def parse_args():
                         ' (default: BCEDiceLoss)')
     
     # dataset
-    parser.add_argument('--dataset', default='breast', help='dataset name')
+    parser.add_argument('--dataset', default='busi', help='dataset name')
     parser.add_argument('--data_dir', default='inputs', help='dataset dir')
 
     parser.add_argument('--output_dir', default='outputs', help='ouput dir')
@@ -97,7 +97,7 @@ def parse_args():
                         ' | '.join(['Adam', 'SGD']) +
                         ' (default: Adam)')
 
-    parser.add_argument('--lr', '--learning_rate', default=1e-2, type=float,
+    parser.add_argument('--lr', '--learning_rate', default=1e-4, type=float,
                         metavar='LR', help='initial learning rate')
     parser.add_argument('--momentum', default=0.9, type=float,
                         help='momentum')
@@ -308,16 +308,9 @@ def main():
     dataset_name = config['dataset']
 
     img_ext = '.png'
-    if dataset_name == 'breast':
-        img_ext = '.jpg'
-
     if dataset_name == 'busi':
         mask_ext = '_mask.png'
     elif dataset_name == 'glas':
-        mask_ext = '.png'
-    elif dataset_name == 'breast':
-        mask_ext = '.jpg'
-    elif dataset_name == 'inbreast':
         mask_ext = '.png'
     elif dataset_name == 'cvc':
         mask_ext = '.png'
@@ -350,7 +343,7 @@ def main():
         mask_ext=mask_ext,
         num_classes=config['num_classes'],
         transform=train_transform)
-    # print("mask_dir", train_dataset.mask_dir)
+
     val_dataset = Dataset(
         img_ids=val_img_ids,
         img_dir=os.path.join(config['data_dir'] ,config['dataset'], 'images'),
@@ -359,7 +352,7 @@ def main():
         mask_ext=mask_ext,
         num_classes=config['num_classes'],
         transform=val_transform)
-    # print("val_dir", val_dataset.mask_dir)
+
 
     train_loader = torch.utils.data.DataLoader(
         train_dataset,
