@@ -11,7 +11,7 @@ python train.py --arch ResUKAN --dataset ${dataset} --input_w ${input_size} --in
 For example, train ResU-KAN with the resolution of 256x256 with a single GPU on the BUSI dataset in the ```inputs``` dir:
 
 ```bash
-python train.py --arch ResUKAN --dataset busi --input_w 256 --input_h 256 --name busi_UKAN  --data_dir ./inputs
+python train.py --arch ResUKAN --dataset busi --input_w 256 --input_h 256 --name busi_ResUKAN  --data_dir ./inputs
 ```
 
 ### Evaluating ResU-KAN
